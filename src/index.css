@@ -1,0 +1,358 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Gaming-inspired Dark Theme Design System 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 13% 9%;
+    --foreground: 220 9% 95%;
+
+    --card: 220 13% 11%;
+    --card-foreground: 220 9% 95%;
+
+    --popover: 220 13% 11%;
+    --popover-foreground: 220 9% 95%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 220 9% 95%;
+
+    --secondary: 220 13% 16%;
+    --secondary-foreground: 220 9% 95%;
+
+    --muted: 220 13% 16%;
+    --muted-foreground: 220 13% 60%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 220 9% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 9% 95%;
+
+    --border: 220 13% 16%;
+    --input: 220 13% 16%;
+    --ring: 217 91% 60%;
+
+    /* Gaming-specific colors */
+    --gaming-primary: 217 91% 60%;
+    --gaming-secondary: 220 13% 16%;
+    --gaming-success: 142 76% 36%;
+    --gaming-warning: 38 92% 50%;
+    --gaming-danger: 0 84% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 40%));
+    --gradient-card: linear-gradient(145deg, hsl(220 13% 11%), hsl(220 13% 13%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 13% 9%) 0%, hsl(217 91% 60% / 0.1) 100%);
+    --gradient-glow: linear-gradient(135deg, hsl(217 91% 60% / 0.8), hsl(217 91% 40% / 0.8));
+
+    /* Shadows */
+    --shadow-gaming: 0 8px 32px hsl(217 91% 60% / 0.15);
+    --shadow-card: 0 4px 24px hsl(220 13% 5% / 0.4);
+    --shadow-glow: 0 0 24px hsl(217 91% 60% / 0.3);
+    --shadow-hover: 0 12px 40px hsl(217 91% 60% / 0.25);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background: var(--gradient-hero);
+    min-height: 100vh;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/50;
+  }
+}
+
+@layer components {
+  .gaming-card {
+    @apply bg-card border border-border rounded-lg p-3 sm:p-4 relative overflow-hidden;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+  }
+
+  .gaming-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .gaming-button {
+    @apply inline-flex items-center justify-center rounded-md font-medium transition-all duration-300;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+    @apply text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3;
+    background: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 40%));
+    box-shadow: var(--shadow-gaming);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gaming-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-glow);
+    transition: left 0.5s ease;
+  }
+
+  .gaming-button:hover::before {
+    left: 100%;
+  }
+
+  .gaming-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .gaming-button:active {
+    transform: translateY(0);
+  }
+
+  .gaming-input {
+    @apply flex w-full rounded-md border border-input bg-card px-3 py-2 text-sm;
+    @apply ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium;
+    @apply placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2;
+    @apply focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+    background: var(--gradient-card);
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+  }
+
+  .gaming-input:focus-within {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+  }
+
+  /* Mobile-specific responsive utilities */
+  .mobile-container {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .mobile-text {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  .mobile-heading {
+    @apply text-lg sm:text-xl lg:text-2xl xl:text-3xl;
+  }
+
+  .mobile-spacing {
+    @apply space-y-3 sm:space-y-4 lg:space-y-6;
+  }
+
+  .mobile-grid {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+
+  .mobile-gap {
+    @apply gap-3 sm:gap-4 lg:gap-6;
+  }
+
+  /* Extra small breakpoint for very small screens */
+  @media (min-width: 475px) {
+    .xs\:inline {
+      display: inline;
+    }
+  }
+
+  .vote-button {
+    @apply inline-flex items-center justify-center rounded-md p-2 text-sm font-medium;
+    @apply transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-ring;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vote-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: currentColor;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
+  }
+
+  .vote-button:hover::before {
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+  }
+
+  .upvote-active {
+    @apply text-green-400 bg-green-400/10 border border-green-400/20;
+  }
+
+  .downvote-active {
+    @apply text-red-400 bg-red-400/10 border border-red-400/20;
+  }
+
+  .proof-preview {
+    @apply cursor-pointer rounded-lg overflow-hidden border border-border relative;
+    @apply hover:scale-105 transition-all duration-300;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .proof-preview:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: hsl(var(--primary));
+  }
+
+  .hack-type-badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+    @apply border border-primary/20 transition-all duration-200;
+    background: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 40%));
+    color: hsl(var(--primary-foreground));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hack-type-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .hack-type-badge:hover::before {
+    left: 100%;
+  }
+
+  .hack-type-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Enhanced animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Neon glow effect */
+  .neon-glow {
+    box-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px currentColor;
+  }
+
+  /* Responsive text utilities */
+  .text-responsive {
+    @apply text-sm sm:text-base md:text-lg lg:text-xl;
+  }
+
+  .heading-responsive {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px hsl(217 91% 60% / 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 40px hsl(217 91% 60% / 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
