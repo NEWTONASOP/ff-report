@@ -9,7 +9,7 @@ export const Layout = ({ children }: LayoutProps) => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <div className="pt-2 sm:pt-3 lg:pt-2 pb-2 sm:pb-3 lg:pb-2 px-1 sm:px-2 lg:px-1">
+      <div className="pt-2 sm:pt-3 lg:pt-2 pb-2 sm:pb-3 lg:pb-2 px-1 sm:px-2 lg:px-16 xl:px-24 2xl:px-32">
         {children}
       </div>
 
