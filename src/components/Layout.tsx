@@ -23,6 +23,14 @@ export const Layout = ({ children }: LayoutProps) => {
             <p className="mt-1">
               Report responsibly • False reports may result in penalties
             </p>
+            <div className="mt-3 pt-3 border-t border-border/30">
+              <p className="font-medium text-primary">
+                Made by NEWTON AS
+              </p>
+              <p className="text-xs opacity-80">
+                UID: 600322222
+              </p>
+            </div>
           </div>
         </div>
       </footer>
