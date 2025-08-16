@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
 import { HeroSection } from "@/components/HeroSection";
+import { StatsOverview } from "@/components/StatsOverview";
 import { ReportsList } from "@/components/ReportsList";
 import { Card } from "@/components/ui/card";
-import { FileText, Search, Shield, Users, TrendingUp, Clock } from "lucide-react";
+import { FileText, Search, Shield, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   return (
     <>
@@ -24,10 +23,10 @@ const Index = () => {
             Quick Actions
           </h2>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <Link to="/submit">
-              <Card className="gaming-card p-4 sm:p-5 text-center hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/20 mb-3">
+              <Card className="gaming-card p-4 sm:p-5 text-center cursor-pointer">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-primary/20 mb-3">
                   <FileText className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
                 </div>
                 <h3 className="text-base sm:text-lg font-bold mb-2">Submit Report</h3>
@@ -38,8 +37,8 @@ const Index = () => {
             </Link>
             
             <Link to="/search">
-              <Card className="gaming-card p-4 sm:p-5 text-center hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-blue-500/20 mb-3">
+              <Card className="gaming-card p-4 sm:p-5 text-center cursor-pointer">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-blue-500/20 mb-3">
                   <Search className="h-6 w-6 sm:h-7 sm:w-7 text-blue-500" />
                 </div>
                 <h3 className="text-base sm:text-lg font-bold mb-2">Search Reports</h3>
@@ -49,64 +48,42 @@ const Index = () => {
               </Card>
             </Link>
             
-            <Link to="/reports">
-              <Card className="gaming-card p-4 sm:p-5 text-center hover:scale-105 transition-transform duration-300 cursor-pointer sm:col-span-2 lg:col-span-1">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-green-500/20 mb-3">
-                  <Shield className="h-6 w-6 sm:h-7 sm:w-7 text-green-500" />
+            <Link to="/analytics" className="group">
+              <Card className="gaming-card p-6 sm:p-8 text-center cursor-pointer group-hover:scale-105 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative z-10">
+                  <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-500/10 mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <BarChart3 className="h-8 w-8 sm:h-10 sm:w-10 text-purple-500 group-hover:text-purple-400" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold mb-3 group-hover:text-purple-400 transition-colors duration-300">Analytics</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground group-hover:text-muted-foreground/80 leading-relaxed">
+                    View detailed insights & trends
+                  </p>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold mb-2">Browse All</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground">
-                  View all community reports
-                </p>
+              </Card>
+            </Link>
+            
+            <Link to="/reports" className="group">
+              <Card className="gaming-card p-6 sm:p-8 text-center cursor-pointer group-hover:scale-105 transition-all duration-500 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative z-10">
+                  <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-500/10 mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <Shield className="h-8 w-8 sm:h-10 sm:w-10 text-green-500 group-hover:text-green-400" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold mb-3 group-hover:text-green-400 transition-colors duration-300">Browse All</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground group-hover:text-muted-foreground/80 leading-relaxed">
+                    View all community reports
+                  </p>
+                </div>
               </Card>
             </Link>
           </div>
         </div>
       </div>
       
-      {/* Community Impact Section */}
-      <div className="container mx-auto px-4 mb-6 sm:mb-8">
-        <div className="text-center">
-          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-blue-300 bg-clip-text text-transparent">
-            Community Impact
-          </h2>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            <Card className="gaming-card text-center p-3 sm:p-4 hover:scale-105 transition-transform duration-300">
-              <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-500 mb-2 sm:mb-3">
-                <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-1">1</h3>
-              <p className="text-xs font-medium mb-1">Total Reports</p>
-              <p className="text-xs text-muted-foreground">Community submissions</p>
-            </Card>
-            <Card className="gaming-card text-center p-3 sm:p-4 hover:scale-105 transition-transform duration-300">
-              <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-green-500 mb-2 sm:mb-3">
-                <Users className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-1">1</h3>
-              <p className="text-xs font-medium mb-1">Total Votes</p>
-              <p className="text-xs text-muted-foreground">Community participation</p>
-            </Card>
-            <Card className="gaming-card text-center p-3 sm:p-4 hover:scale-105 transition-transform duration-300">
-              <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-red-500 mb-2 sm:mb-3">
-                <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-1">0</h3>
-              <p className="text-xs font-medium mb-1">Suspicious Reports</p>
-              <p className="text-xs text-muted-foreground">Flagged by community</p>
-            </Card>
-            <Card className="gaming-card text-center p-3 sm:p-4 hover:scale-105 transition-transform duration-300">
-              <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-orange-500 mb-2 sm:mb-3">
-                <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-1">1</h3>
-              <p className="text-xs font-medium mb-1">Recent Reports</p>
-              <p className="text-xs text-muted-foreground">Last 24 hours</p>
-            </Card>
-          </div>
-        </div>
-      </div>
+      {/* Community Impact Dashboard */}
+      <StatsOverview />
+
     </>
   );
 };

@@ -129,46 +129,30 @@ All colors MUST be HSL.
 
 @layer components {
   .gaming-card {
-    @apply bg-card border border-border rounded-lg p-3 sm:p-4 relative overflow-hidden;
-    background: var(--gradient-card);
-    box-shadow: var(--shadow-card);
-    backdrop-filter: blur(8px);
-    transition: all 0.3s ease;
+    @apply bg-card border border-border rounded-lg p-4 sm:p-6 relative;
+    background: hsl(var(--card));
+    box-shadow: 0 2px 8px hsl(220 13% 5% / 0.2);
+    transition: all 0.2s ease;
   }
 
   .gaming-card:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-2px);
+    box-shadow: 0 4px 12px hsl(220 13% 5% / 0.3);
+    transform: translateY(-1px);
   }
 
   .gaming-button {
-    @apply inline-flex items-center justify-center rounded-md font-medium transition-all duration-300;
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200;
     @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
     @apply text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3;
-    background: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 40%));
-    box-shadow: var(--shadow-gaming);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .gaming-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-glow);
-    transition: left 0.5s ease;
-  }
-
-  .gaming-button:hover::before {
-    left: 100%;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 2px 4px hsl(var(--primary) / 0.2);
   }
 
   .gaming-button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
+    background: hsl(var(--primary) / 0.9);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px hsl(var(--primary) / 0.3);
   }
 
   .gaming-button:active {
@@ -176,12 +160,11 @@ All colors MUST be HSL.
   }
 
   .gaming-input {
-    @apply flex w-full rounded-md border border-input bg-card px-3 py-2 text-sm;
+    @apply flex w-full rounded-lg border border-input bg-card px-3 py-2 text-sm;
     @apply ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium;
     @apply placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2;
     @apply focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
-    background: var(--gradient-card);
-    backdrop-filter: blur(8px);
+    background: hsl(var(--card));
     transition: all 0.2s ease;
   }
 
@@ -220,6 +203,34 @@ All colors MUST be HSL.
     .xs\:inline {
       display: inline;
     }
+  }
+
+  /* Enhanced mobile optimizations */
+  .mobile-optimized {
+    @apply touch-manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-safe-area {
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Improved touch targets */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 
   .vote-button {

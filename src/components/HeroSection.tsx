@@ -26,6 +26,7 @@ export const HeroSection = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -72,12 +73,17 @@ export const HeroSection = () => {
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) return;
-    
+
+    setIsSearching(true);
+
     // Store search query in localStorage for the search panel
     localStorage.setItem('hero_search_query', searchQuery);
-    
-    // Navigate to search page
-    navigate("/search");
+
+    // Add a small delay for better UX
+    setTimeout(() => {
+      navigate("/search");
+      setIsSearching(false);
+    }, 300);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -104,10 +110,15 @@ export const HeroSection = () => {
   );
 
   return (
-    <section className="relative overflow-hidden py-6 sm:py-8">
-      {/* Background gradient - more subtle */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-blue-300/5" />
-      
+    <section className="relative overflow-hidden py-8 sm:py-12">
+      {/* Enhanced Background with multiple layers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-blue-300/10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
+
+      {/* Animated background elements */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-10 right-10 w-48 h-48 bg-blue-300/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Compact Hero Content */}
         <div className="text-center mb-6 sm:mb-8">
@@ -117,18 +128,18 @@ export const HeroSection = () => {
               Community Driven
             </Badge>
           </div>
-          
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-primary to-blue-300 bg-clip-text text-transparent px-2">
+
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary via-blue-400 to-blue-300 bg-clip-text text-transparent px-2 leading-tight">
             Keep Free Fire Fair
           </h1>
-          
-          <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6 max-w-2xl mx-auto leading-relaxed px-4">
-            Join the community in maintaining a fair gaming environment. Report hackers, verify reports, and help build a stronger Free Fire community.
+
+          <p className="text-lg sm:text-xl text-muted-foreground/90 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4 font-medium">
+            Join the fight for fair play. Report hackers, verify reports, and help build a stronger Free Fire community.
           </p>
-          
+
           <div className="flex flex-col gap-3 justify-center items-center px-4">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="gaming-button text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-auto"
               onClick={() => navigate("/submit")}
             >
@@ -136,7 +147,7 @@ export const HeroSection = () => {
               Report a Hacker
               <ArrowRight className="h-4 w-4 ml-2" />
             </Button>
-            
+
             {/* Direct Search Bar */}
             <div className="relative w-full max-w-md">
               <div className="relative">
@@ -152,9 +163,13 @@ export const HeroSection = () => {
                   size="sm"
                   className="absolute right-1 top-1/2 transform -translate-y-1/2 h-7 sm:h-8 px-2 sm:px-3 bg-primary hover:bg-primary/90 text-xs sm:text-sm"
                   onClick={handleSearch}
-                  disabled={!searchQuery.trim()}
+                  disabled={!searchQuery.trim() || isSearching}
                 >
-                  Search
+                  {isSearching ? (
+                    <div className="animate-spin h-3 w-3 border-2 border-white border-t-transparent rounded-full" />
+                  ) : (
+                    "Search"
+                  )}
                 </Button>
               </div>
             </div>

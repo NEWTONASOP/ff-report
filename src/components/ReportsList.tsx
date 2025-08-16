@@ -295,7 +295,7 @@ export const ReportsList = ({ onUpdate, hideControls = false }: ReportsListProps
               <h3 className="text-lg sm:text-xl font-bold mb-2">
                 {hackTypeFilter && hackTypeFilter !== "all" 
                   ? `${hackTypeFilter.replace('_', ' ').toUpperCase()} Reports` 
-                  : 'All Reports'
+                  : 'Recent Reports'
                 }
               </h3>
               <div className="flex items-center gap-4 text-sm text-muted-foreground">

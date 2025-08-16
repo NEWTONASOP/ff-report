@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Shield, Search, FileText, Settings, Menu, X, Home } from "lucide-react";
+import { Shield, Search, FileText, Settings, Menu, X, Home, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link, useLocation } from "react-router-dom";
@@ -13,6 +13,7 @@ export const Header = () => {
     { id: "/reports", label: "Reports", icon: FileText, description: "Browse all reports" },
     { id: "/submit", label: "Submit Report", icon: Shield, description: "Report a hacker" },
     { id: "/search", label: "Search", icon: Search, description: "Find specific reports" },
+    { id: "/analytics", label: "Analytics", icon: BarChart3, description: "View detailed analytics" },
     { id: "/admin", label: "Admin", icon: Settings, description: "Administrative tools" },
   ];
 

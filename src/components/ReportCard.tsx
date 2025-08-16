@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronUp, ChevronDown, Calendar, Eye, AlertTriangle, User, Hash, ThumbsUp, ThumbsDown, Clock, TrendingUp, X, Play, Copy, Check } from "lucide-react";
+import { Eye, AlertTriangle, User, Hash, ThumbsUp, ThumbsDown, Clock, Play, Copy, Check, Shield, Target, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -202,11 +202,15 @@ export const ReportCard = ({ report, onUpdate }: ReportCardProps) => {
               </div>
             </div>
             
-            {/* Hack Type and Time - Stack on mobile */}
+            {/* Hack Type - Prominent display */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
-              <Badge className="hack-type-badge w-fit">
-                {getHackTypeLabel(report.hack_type)}
-              </Badge>
+              <div className="flex items-center space-x-2">
+                <AlertTriangle className="h-4 w-4 text-red-400" />
+                <span className="text-sm text-muted-foreground">Hack Type:</span>
+                <Badge className="hack-type-badge">
+                  {getHackTypeLabel(report.hack_type)}
+                </Badge>
+              </div>
               <div className="flex items-center space-x-1 text-xs text-muted-foreground">
                 <Clock className="h-3 w-3" />
                 <span>{formatDate(report.created_at)}</span>
